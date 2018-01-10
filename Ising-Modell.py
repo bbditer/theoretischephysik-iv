@@ -37,9 +37,9 @@ def calcEnergy(config):
         for j in range(N):
             S = config[i,j]
             neighbours = config[(i+1)%N, j] + config[(i-1)%N, j] + config[i, (j+1)%N] + config[i, (j-1)%N]
-            energy += -neighbours*S/2.
+            energy += -neighbours*S/8.
 
-    return energy/4.
+    return energy
 
 #Berechnet die Magnetisierung einer gegebenen Konfiguration
 def calcMag(config):
@@ -50,12 +50,12 @@ def calcMag(config):
 
 #Anfangswerte
 T = np.array([1., 1.5, 2., 2.5, 3., 3.5, 4., 4.5, 5.])
-L_0 = 8 #Groesse des kleinsten Gitters
+L_0 = 4 #Groesse des kleinsten Gitters
 N = 20 #Anzahl der Daten zur Berechnung des Mittelwertes
 eqSteps = 1000 #MC-Schritte fuers Gleichgewicht
 mcSteps = 30000 #MC-Schritte fuer die Berechnung
 
-for l in range(3):
+for l in range(7):
     L = L_0 + l
     
     file = open('Plots/Gitter' + str(L) + '.csv', 'w')
